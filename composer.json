@@ -1,5 +1,5 @@
 {
-    "name": "aydin-hassan/xml-joiner",
+    "name": "aydin-hassan/xml-fuse",
     "description": "Small Library to turn merge data using XPaths",
     "minimum-stability": "stable",
     "license": "MIT",
@@ -10,7 +10,7 @@
         }
     ],
     "require" : {
-        "php" : ">=5.3"
+        "php" : ">=5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1",

@@ -131,7 +131,7 @@ class XmlFuse
     {
 
         if (!count($this->xPaths)) {
-            return [];
+            return [[]];
         }
 
         //create copy of xPaths
@@ -157,7 +157,7 @@ class XmlFuse
 
         if (!count($children) && !count($parentData)) {
             //this is the top level so we don't need to nest
-            return $parentData;
+            return [$parentData];
         } elseif (!count($children)) {
             return [$parentData];
         }

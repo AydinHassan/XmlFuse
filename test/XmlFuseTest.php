@@ -259,7 +259,7 @@ class XmlFuseTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->fuse->parse();
 
-        $this->assertEquals([], $res);
+        $this->assertEquals([[]], $res);
     }
 
     public function testWithInvalidXPath()
@@ -273,6 +273,6 @@ class XmlFuseTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->fuse->parse();
 
-        $this->assertEquals([], $res);
+        $this->assertEquals([[]], $res);
     }
 }

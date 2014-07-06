@@ -41,29 +41,19 @@ We could use an xpath to loop each order item like so: `//order/lines/line` and 
 array(2) {
   [0] =>
   array(5) {
-    'orderId' =>
-    string(2) "01"
-    'customerEmail' =>
-    string(19) "aydin@hotmail.co.uk"
-    'id' =>
-    string(1) "1"
-    'qty' =>
-    string(1) "2"
-    'status' =>
-    string(10) "despatched"
+    'orderId' => string(2) "01"
+    'customerEmail' => string(19) "aydin@hotmail.co.uk"
+    'id' => string(1) "1"
+    'qty' => string(1) "2"
+    'status' => string(10) "despatched"
   }
   [1] =>
   array(5) {
-    'orderId' =>
-    string(2) "01"
-    'customerEmail' =>
-    string(19) "aydin@hotmail.co.uk"
-    'id' =>
-    string(1) "5"
-    'qty' =>
-    string(1) "1"
-    'status' =>
-    string(10) "despatched"
+    'orderId' => string(2) "01"
+    'customerEmail' => string(19) "aydin@hotmail.co.uk"
+    'id' => string(1) "5"
+    'qty' => string(1) "1"
+    'status' => string(10) "despatched"
   }
 }
 ```
@@ -115,33 +105,23 @@ $res = $fuser->parse();
 
 var_dump($res);
 
-\\Output
+//Output
 array(2) {
   [0] =>
   array(5) {
-    'orderId' =>
-    string(2) "01"
-    'customerEmail' =>
-    string(19) "aydin@hotmail.co.uk"
-    'id' =>
-    string(1) "1"
-    'qty' =>
-    string(1) "2"
-    'status' =>
-    string(10) "despatched"
+    'orderId' => string(2) "01"
+    'customerEmail' => string(19) "aydin@hotmail.co.uk"
+    'id' => string(1) "1"
+    'qty' => string(1) "2"
+    'status' => string(10) "despatched"
   }
   [1] =>
   array(5) {
-    'orderId' =>
-    string(2) "01"
-    'customerEmail' =>
-    string(19) "aydin@hotmail.co.uk"
-    'id' =>
-    string(1) "5"
-    'qty' =>
-    string(1) "1"
-    'status' =>
-    string(10) "despatched"
+    'orderId' => string(2) "01"
+    'customerEmail' => string(19) "aydin@hotmail.co.uk"
+    'id' => string(1) "5"
+    'qty' => string(1) "1"
+    'status' => string(10) "despatched"
   }
 }
 ```

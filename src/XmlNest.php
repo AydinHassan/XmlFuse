@@ -151,20 +151,31 @@ class XmlNest
     public function parseXPath(array $xPaths, SimpleXMLElement $elem)
     {
 
-        $xPath      = array_shift($xPaths);
-        $nestKey    = key($xPaths);
-        $children   = $elem->xpath($xPath);
+        if (!isset($xPaths['xPath']) || !isset($xPaths['key'])) {
+            throw new \Exception("xPath Should have 'xPath' && 'key' set");
+        }
+
+        $xPath          = $xPaths['xPath'];
+        $childXPaths    = (isset($xPaths['children'])) ? $xPaths['children'] : null;
+
+        $children = $elem->xpath($xPath);
+
+        if (!$children) {
+            throw new \Exception(sprintf("No Elements found for xPath '%s'", $xPath));
+        }
 
         $return = [];
         foreach ($children as $child) {
             $data = $this->getScalarRecords($child);
 
-            if (count($xPaths) > 0) {
-                $data[$nestKey] = $this->parseXPath($xPaths, $child);
+            if (null !== $childXPaths) {
+                foreach($childXPaths as $childXPath) {
+                    $data[$childXPath['key']] = $this->parseXPath($childXPath, $child);
+                }
             }
+
             $return[] = $data;
         }
-
         return $return;
     }
 }

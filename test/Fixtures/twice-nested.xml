@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orderStatus>
+    <order>
+        <orderId>100000026</orderId>
+        <email>aydin@hotmail.co.uk</email>
+        <statuses>
+            <status>
+                <code>STATE1</code>
+                <description>STATE1 Description</description>
+            </status>
+            <status>
+                <code>STATE2</code>
+                <description>STATE2 Description</description>
+            </status>
+        </statuses>
+        <lines>
+            <line>
+                <id>1</id>
+                <sku>SKU1</sku>
+                <qty>2</qty>
+            </line>
+            <line>
+                <id>2</id>
+                <sku>SKU2</sku>
+                <qty>3</qty>
+            </line>
+            <line>
+                <id>3</id>
+                <sku>SKU3</sku>
+                <qty>3</qty>
+            </line>
+        </lines>
+    </order>
+</orderStatus>

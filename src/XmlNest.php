@@ -169,7 +169,7 @@ class XmlNest
             $data = $this->getScalarRecords($child);
 
             if (null !== $childXPaths) {
-                foreach($childXPaths as $childXPath) {
+                foreach ($childXPaths as $childXPath) {
                     $data[$childXPath['key']] = $this->parseXPath($childXPath, $child);
                 }
             }

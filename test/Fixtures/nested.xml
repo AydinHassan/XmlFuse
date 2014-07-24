@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<returnStatus>
+    <return>
+        <orderId>100000026</orderId>
+        <rmaStatus>RETURNED</rmaStatus>
+        <lines>
+            <line>
+                <id>1</id>
+                <sku>SKU1</sku>
+                <qty>2</qty>
+            </line>
+            <line>
+                <id>2</id>
+                <sku>SKU2</sku>
+                <qty>3</qty>
+            </line>
+        </lines>
+    </return>
+</returnStatus>

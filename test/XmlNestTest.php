@@ -3,6 +3,7 @@
 namespace AydinHassan\XmlFuseTest;
 
 use AydinHassan\XmlFuse\XmlNest;
+use AydinHassan\XmlFuse\XmlFuse;
 
 /**
  * Class XmlNestTest
@@ -10,18 +11,37 @@ use AydinHassan\XmlFuse\XmlNest;
  */
 class XmlNestTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var XmlNest
-     */
-    protected $nest;
-
     public function loadXmlFixture($fileName)
     {
         return file_get_contents(sprintf("%s/Fixtures/%s", __DIR__, $fileName));
     }
 
-    public function setUp()
+    public function testXPathAndKeyMustBeSet()
     {
+        $xml    = $this->loadXmlFixture("nested.xml");
+        $xmlObj = simplexml_load_string($xml);
+        $nester = new XmlNest($xmlObj, []);
+
+        $this->setExpectedException(
+            '\Exception',
+            'xPath Should have "xPath" & "key" set'
+        );
+
+        $nester->parseXPath(['children' => []], $xmlObj);
+    }
+
+    public function testExceptionIsThrowIfNoElementsFoundFromXPath()
+    {
+        $xml    = $this->loadXmlFixture("nested.xml");
+        $xmlObj = simplexml_load_string($xml);
+        $nester = new XmlNest($xmlObj, []);
+
+        $this->setExpectedException(
+            '\Exception',
+            'Invalid xPath: "notanxpath-/"'
+        );
+
+        $nester->parseXPath(['key' => 'items', 'xPath' => 'notanxpath-/'], $xmlObj);
     }
 
     public function testNestedParse()
@@ -38,9 +58,10 @@ class XmlNestTest extends \PHPUnit_Framework_TestCase
         ];
 
         $xml = $this->loadXmlFixture("nested.xml");
-        $this->nest = new XmlNest($xml, $xPaths);
+        $xmlObj = simplexml_load_string($xml);
+        $nester = new XmlNest($xmlObj, $xPaths);
 
-        $res = $this->nest->parse();
+        $res = $nester->parse();
 
         $expected = [
             [
@@ -82,9 +103,10 @@ class XmlNestTest extends \PHPUnit_Framework_TestCase
         ];
 
         $xml = $this->loadXmlFixture("twice-nested.xml");
-        $this->nest = new XmlNest($xml, $xPaths);
+        $xmlObj = simplexml_load_string($xml);
+        $nester = new XmlNest($xmlObj, $xPaths);
 
-        $res = $this->nest->parse();
+        $res = $nester->parse();
 
         $expected = [
             [

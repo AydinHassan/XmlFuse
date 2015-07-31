@@ -20,7 +20,7 @@ class XmlFuse
      * @param $type
      * @param $xml
      * @param array $xPaths
-     * @return mixed
+     * @return Parser
      */
     public static function factory($type, $xml, array $xPaths = array())
     {

@@ -57,9 +57,12 @@ class AbstractParser
      * used to include this data.
      *
      * @param SimpleXMLElement $element
+     * @param bool             $asArray If there is only 1 record found from xPath,
+     *                                  whether to return as an array or just the value
+     *
      * @return array
      */
-    public function getScalarRecords(SimpleXMLElement $element)
+    public function getScalarRecords(SimpleXMLElement $element, $asArray = true)
     {
         $data = [];
 
@@ -73,8 +76,10 @@ class AbstractParser
 
             return $data;
             //only 1 element
-        } else {
+        } elseif ($asArray) {
             return [$element->getName() => (string)$element];
+        } else {
+            return (string) $element;
         }
     }
 

@@ -144,4 +144,43 @@ class XmlNestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $res);
     }
+
+    public function testNestScalar()
+    {
+        $xPaths = [
+            'xPath' => '//SKUs/SKU',
+            'key' => 'product',
+            'children' => [
+                [
+                    'xPath' => 'Attributes/Colour/text()',
+                    'key' => 'colour'
+                ],
+                [
+                    'xPath' => 'Attributes/Size/text()',
+                    'key' => 'size'
+                ],
+                [
+                    'xPath' => 'Attributes/AvailableFrom/text()',
+                    'key' => 'available_from'
+                ]
+            ]
+        ];
+
+        $xml = $this->loadXmlFixture("nest-scalar.xml");
+        $xmlObj = simplexml_load_string($xml);
+        $nester = new XmlNest($xmlObj, $xPaths);
+
+        $res = $nester->parse();
+
+        $expected = [
+            [
+                'node'              => 'RGI002XS',
+                'colour'            => 'QmxhY2s=',
+                'size'              => 'WFM=',
+                'available_from'    => 'SW4gU3RvY2s=',
+            ]
+        ];
+
+        $this->assertEquals($expected, $res);
+    }
 }

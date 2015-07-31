@@ -21,7 +21,7 @@ class XmlNest extends AbstractParser implements Parser
      * @return array
      * @throws \Exception
      */
-    public function parseXPath(array $xPaths, SimpleXMLElement $elem)
+    public function parseXPath(array $xPaths, SimpleXMLElement $elem, $asArray = true)
     {
 
         if (!isset($xPaths['xPath']) || !isset($xPaths['key'])) {
@@ -39,11 +39,23 @@ class XmlNest extends AbstractParser implements Parser
 
         $return = [];
         foreach ($children as $child) {
-            $data = $this->getScalarRecords($child);
+            $data = $this->getScalarRecords($child, $asArray);
 
             if (null !== $childXPaths) {
                 foreach ($childXPaths as $childXPath) {
-                    $data[$childXPath['key']] = $this->parseXPath($childXPath, $child);
+                    $getTextContent = true;
+                    if (preg_match('#\/text\(\)$#', $childXPath['xPath'])) {
+                        //we want to extract the value
+                        //not an array of values
+                        $getTextContent = false;
+                    }
+
+                    $childData = $this->parseXPath($childXPath, $child, $getTextContent);
+                    if ($getTextContent) {
+                        $data[$childXPath['key']] = $childData;
+                    } else {
+                        $data[$childXPath['key']] = current($childData);
+                    }
                 }
             }
 
